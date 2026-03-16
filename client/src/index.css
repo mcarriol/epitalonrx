@@ -1,0 +1,327 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* =============================================
+   AURELIUS HEALTH GROUP — Design System
+   Philosophy: Editorial Medical Luxury
+   Primary Typeface: DM Sans (geometric sans-serif)
+     — open counters, large x-height, high legibility
+   Typography Scale:
+     H1/H2: weight 300–400, tight tracking, generous leading
+     H3/Subheaders: weight 500–600 for hierarchy
+     Body: weight 400, color #3D3D3D (soft charcoal, not pure black)
+   Palette: Aurelius Black / Gold / Cream / Stone
+   ============================================= */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Aurelius brand color tokens */
+  --aurelius-black:    oklch(0.08 0.003 285);
+  --aurelius-gold:     oklch(0.72 0.09 65);
+  --aurelius-gold-dk:  oklch(0.64 0.09 65);
+  --aurelius-cream:    oklch(0.96 0.015 75);
+  --aurelius-stone:    oklch(0.58 0.03 55);
+  --aurelius-charcoal: oklch(0.28 0.006 285);   /* #3D3D3D equivalent — body text */
+  --aurelius-mid-grey: oklch(0.50 0.006 285);   /* secondary text */
+  --aurelius-white:    oklch(0.99 0.005 75);
+  --aurelius-card-dark: oklch(0.11 0.004 285);
+
+  /* Typography — single geometric sans-serif family */
+  --font-display: 'DM Sans', system-ui, sans-serif;
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+
+  /* Type scale */
+  --text-hero:   clamp(2.75rem, 6vw, 5rem);     /* H1 hero */
+  --text-h1:     clamp(2.25rem, 4.5vw, 3.75rem);
+  --text-h2:     clamp(1.75rem, 3vw, 2.75rem);
+  --text-h3:     clamp(1.125rem, 2vw, 1.375rem);
+  --text-body:   1rem;
+  --text-sm:     0.875rem;
+  --text-xs:     0.75rem;
+
+  /* Leading (line-height) */
+  --leading-hero: 1.08;
+  --leading-h1:   1.1;
+  --leading-h2:   1.15;
+  --leading-h3:   1.3;
+  --leading-body: 1.65;
+
+  /* Tracking (letter-spacing) */
+  --tracking-hero:  -0.03em;
+  --tracking-h1:    -0.025em;
+  --tracking-h2:    -0.02em;
+  --tracking-h3:    -0.01em;
+  --tracking-label:  0.1em;
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.99 0.005 75);
+  --foreground: oklch(0.28 0.006 285);    /* soft charcoal, not pure black */
+  --card: oklch(0.99 0.005 75);
+  --card-foreground: oklch(0.28 0.006 285);
+  --popover: oklch(0.99 0.005 75);
+  --popover-foreground: oklch(0.28 0.006 285);
+  --primary: oklch(0.72 0.09 65);
+  --primary-foreground: oklch(0.08 0.003 285);
+  --secondary: oklch(0.96 0.015 75);
+  --secondary-foreground: oklch(0.28 0.006 285);
+  --muted: oklch(0.96 0.015 75);
+  --muted-foreground: oklch(0.50 0.006 285);
+  --accent: oklch(0.96 0.015 75);
+  --accent-foreground: oklch(0.28 0.006 285);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.9 0.01 75);
+  --input: oklch(0.9 0.01 75);
+  --ring: oklch(0.72 0.09 65);
+  --sidebar: oklch(0.96 0.015 75);
+  --sidebar-foreground: oklch(0.28 0.006 285);
+  --sidebar-primary: oklch(0.72 0.09 65);
+  --sidebar-primary-foreground: oklch(0.08 0.003 285);
+  --sidebar-accent: oklch(0.96 0.015 75);
+  --sidebar-accent-foreground: oklch(0.28 0.006 285);
+  --sidebar-border: oklch(0.9 0.01 75);
+  --sidebar-ring: oklch(0.72 0.09 65);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    color: #3D3D3D;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* H1 — Light weight, tight tracking, generous leading */
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-h1);
+    line-height: var(--leading-h1);
+    letter-spacing: var(--tracking-h1);
+  }
+
+  /* H2 — Light/Regular, tight tracking */
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-h2);
+    line-height: var(--leading-h2);
+    letter-spacing: var(--tracking-h2);
+  }
+
+  /* H3 — Medium/Semibold for product names & section features */
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-h3);
+    line-height: var(--leading-h3);
+    letter-spacing: var(--tracking-h3);
+  }
+
+  h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+
+  p {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: var(--leading-body);
+    color: #3D3D3D;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  a[href] {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+  @media (min-width: 640px) {
+    .container { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .container { padding-left: 2.5rem; padding-right: 2.5rem; max-width: 1280px; }
+  }
+
+  /* ── Typography helpers ── */
+  .type-hero {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-hero);
+    line-height: var(--leading-hero);
+    letter-spacing: var(--tracking-hero);
+  }
+
+  .type-h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-h1);
+    line-height: var(--leading-h1);
+    letter-spacing: var(--tracking-h1);
+  }
+
+  .type-h2 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-h2);
+    line-height: var(--leading-h2);
+    letter-spacing: var(--tracking-h2);
+  }
+
+  .type-h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-h3);
+    line-height: var(--leading-h3);
+    letter-spacing: var(--tracking-h3);
+  }
+
+  .type-body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    color: #3D3D3D;
+  }
+
+  .type-body-sm {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: var(--text-sm);
+    line-height: var(--leading-body);
+    color: #5A5A5A;
+  }
+
+  .label-tag {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--aurelius-gold);
+  }
+
+  /* ── Buttons ── */
+  .btn-gold {
+    background: var(--aurelius-gold);
+    color: var(--aurelius-black);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    letter-spacing: 0.02em;
+    padding: 14px 32px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    line-height: 1;
+  }
+  .btn-gold:hover { background: var(--aurelius-gold-dk); }
+
+  .btn-ghost-cream {
+    background: transparent;
+    color: var(--aurelius-cream);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 0.9375rem;
+    letter-spacing: 0.01em;
+    padding: 13px 30px;
+    border-radius: 6px;
+    border: 1.5px solid rgba(245,240,232,0.35);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    line-height: 1;
+  }
+  .btn-ghost-cream:hover {
+    border-color: var(--aurelius-cream);
+    background: rgba(245,240,232,0.08);
+  }
+
+  .btn-ghost-dark {
+    background: transparent;
+    color: #3D3D3D;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 0.9375rem;
+    letter-spacing: 0.01em;
+    padding: 13px 30px;
+    border-radius: 6px;
+    border: 1.5px solid rgba(61,61,61,0.3);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    line-height: 1;
+  }
+  .btn-ghost-dark:hover {
+    border-color: #3D3D3D;
+    background: rgba(61,61,61,0.05);
+  }
+}
